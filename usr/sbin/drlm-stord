@@ -54,6 +54,7 @@ uid=`id | cut -d\( -f1 | cut -d= -f2`
 [ -f /etc/redhat-release ] && OSTYPE="RedHat"
 [ -f /etc/debian_version ] && OSTYPE="Debian"
 [ -f /etc/SuSE-release   ] && OSTYPE="SuSE"
+if [ -f /etc/os-release ] && (cat /etc/os-release | grep -i suse &>/dev/null); then OSTYPE="SuSE"; fi
 
 # Be sure loop module is loaded
 #$(/sbin/modprobe -q loop) || exit 0

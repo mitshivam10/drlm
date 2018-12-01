@@ -128,26 +128,26 @@ then
            ;;
    
        Suse)
-           case ${VERSION} in
-               [11*-12*-13*-42*])
-                   if check_zypper ${USER} ${CLI_NAME} ${SUDO}; then
-                       LogPrint "Installing dependencies and ReaR"
-                       #if install_dependencies_zypper  ${USER} ${CLI_NAME} ${SUDO}; then Log "Dependencies have been installed"; else Error "Error installing dependencies, check logfile"; fi
-                       if [[ ${URL_REAR} == "" ]] ; then
-                           if install_rear_zypper_repo ${USER} ${CLI_NAME} ${SUDO}; then Log "ReaR has been installed from repo"; else Error "Problem installing ReaR from repo, check logfile"; fi
-                       else
-                           if ssh_install_rear_zypper ${USER} ${CLI_NAME} ${URL_REAR} ${SUDO}; then Log "ReaR has been installed"; else Error "Problem installing ReaR, check logfile"; fi
-                       fi
-                   else
-                       Error "zypper problem, some dependencies are missing, check requisites on http://drlm-docs.readthedocs.org/en/latest/ClientConfig.html"
-                   fi
-                   ;;
-               *)
-                   Error "SUSE Release not identified!"
-                   ;;
-           esac
-           ;;
-   
+            case ${VERSION} in
+                [11*-12*-13*-15*-42*])
+                    if check_zypper ${USER} ${CLI_NAME} ${SUDO}; then
+                        LogPrint "Installing dependencies and ReaR"
+                        #if install_dependencies_zypper  ${USER} ${CLI_NAME} ${SUDO}; then Log "Dependencies have been installed"; else Error "Error installing dependencies, check logfile"; fi
+                        if [[ ${URL_REAR} == "" ]] ; then
+                            if install_rear_zypper_repo ${USER} ${CLI_NAME} ${SUDO}; then Log "ReaR has been installed from repo"; else Error "Problem installing ReaR from repo, check logfile"; fi
+                        else
+                            if ssh_install_rear_zypper ${USER} ${CLI_NAME} ${URL_REAR} ${SUDO}; then Log "ReaR has been installed"; else Error "Problem installing ReaR, check logfile"; fi
+                        fi
+                    else
+                        Error "zypper problem, some dependencies are missing, check requisites on http://drlm-docs.readthedocs.org/en/latest/ClientConfig.html"
+                    fi
+                    ;;
+                *)
+                    Error "SUSE Release not identified!"
+                    ;;
+            esac
+            ;;
+  
        *)
            Error "GNU/Linux Distribution not identified"
            ;;
